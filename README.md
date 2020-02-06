@@ -8,7 +8,7 @@ GoNe is abbreviation for (Go) Dro(Ne). This Go CLI app is used for controlling F
 * Wireless adapter
 
 ## How to use
-* Clone Repo
+* clone repository
 
 ``$git clone https://github.com/dhiemaz/wifiGo.git``
 
@@ -17,6 +17,7 @@ GoNe is abbreviation for (Go) Dro(Ne). This Go CLI app is used for controlling F
 ``$go build main.go`` or ``$go install``
 
 * running application
+
 ``$./Gone``
 
 ## Supported OSes
