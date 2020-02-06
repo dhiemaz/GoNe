@@ -2,16 +2,17 @@
   The purpose of this code is to scan wifi based on OS (mac, linux and windows).
   First trying in mac first and with airport mac command.
   Next step :
-  1. Covering for linux
-  2. Covering for windows
-  3. Connecting to SSID
-  4. Getting data from another machine through WLan
-  5. Sending data to another machine through WLan
+  1. Connecting to SSID
+  2. Getting data from another machine through WLan
+  3. Sending data to another machine through WLan
+  4. Covering for linux OS
+  5. Covering for windows OS
 */
 
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -71,9 +72,13 @@ func connect(netInterface, ssid, password string) error {
 
 	// executing wlan scan using mac airport command.
 	networkCmd := exec.Command("networksetup", "-setairportnetwork", netInterface, ssid, password)
-	_, err := networkCmd.Output()
+	networkCmdOutput, err := networkCmd.Output()
 	if err != nil {
 		return err
+	}
+
+	if strings.ContainsAny(string(networkCmdOutput), "Failed") {
+		return errors.New("failed connect to access point")
 	}
 
 	return nil
@@ -88,5 +93,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(accessPointList)
+	for _, accessPoint := range accessPointList.Wlan {
+		if accessPoint.SSID == "WeWork" {
+			err = connect("en0", accessPoint.SSID, "P@ssw0rd")
+			if err != nil {
+				fmt.Println(fmt.Sprintf("failed connect to %s using connection interface %s, %v", accessPoint.SSID, "en0", err))
+				os.Exit(1)
+			}
+
+			fmt.Println(fmt.Sprintf("successfully connected to %s using interface %s", accessPoint.SSID, "en0"))
+			break
+		}
+	}
 }
