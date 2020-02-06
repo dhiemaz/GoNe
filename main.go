@@ -32,15 +32,15 @@ type AccessPoint struct {
 	Wlan []WlanInfo `json:"wlan"`
 }
 
-func main() {
+func listAvailableWifi() (AccessPoint, error) {
+
 	var accessPoint AccessPoint
 
 	// executing wlan scan using mac airport command.
 	airportCmd := exec.Command("/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", "-s")
 	airportCmdOutput, err := airportCmd.Output()
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return accessPoint, err
 	}
 
 	lines := strings.Split(string(airportCmdOutput), "\n")
@@ -64,5 +64,29 @@ func main() {
 	}
 
 	accessPoint = AccessPoint{Wlan: wlanList}
+	return accessPoint, nil
+}
+
+func connect(netInterface, ssid, password string) error {
+
+	// executing wlan scan using mac airport command.
+	networkCmd := exec.Command("networksetup", "-setairportnetwork", netInterface, ssid, password)
+	networkCmdOutput, err := networkCmd.Output()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func main() {
+
+	// get list of available access point
+	accessPointList, err := listAvailableWifi()
+	if err != nil {
+		fmt.Println("failed get list of available access point, ", err)
+		os.Exit(1)
+	}
+
 	fmt.Println(accessPoint)
 }
