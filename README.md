@@ -1,4 +1,5 @@
-![technology Go](https://img.shields.io/badge/technology-go-blue.svg) 
+![technology Go](https://img.shields.io/badge/technology-go-blue.svg)
+[![GoReportCard](https://goreportcard.com/badge/github.com/dhiemaz/GoNe)](https://goreportcard.com/report/dhiemaz/GoNe)
 
 # GoNe
 GoNe is abbreviation for (Go) Dro(Ne). This Go CLI app is used for controlling Fold Drone 036 using Go Programming Language. 
