@@ -10,7 +10,7 @@ GoNe is abbreviation for (Go) Dro(Ne). This Go CLI app is used for controlling F
 ## How to use
 * clone repository
 
-``$git clone https://github.com/dhiemaz/wifiGo.git``
+``$git clone https://github.com/dhiemaz/GoNe.git``
 
 * build or install
 
