@@ -1,10 +1,11 @@
 ![technology Go](https://img.shields.io/badge/technology-go-blue.svg) 
 
-# wifiGo
-This repository contain code in GoLang to use for Scan, Connect, Receiving and Sending data through Wifi.
+# GoNe
+GoNe is abbreviation for (Go) Dro(Ne). This Go CLI app is used for controlling Fold Drone 036 using Go Programming Language. 
 
 ## Requirement
 * Go SDK +1.12
+* Wireless adapter
 
 ## How to use
 * Clone Repo
@@ -15,8 +16,11 @@ This repository contain code in GoLang to use for Scan, Connect, Receiving and S
 
 ``$go build main.go`` or ``$go install``
 
+* running application
+``$./Gone``
+
 ## Supported OSes
-Bellow are OSes which supported
+Bellow are supported OSes.
 * MacOs
 * Linux
 * Windows
