@@ -71,7 +71,7 @@ func connect(netInterface, ssid, password string) error {
 
 	// executing wlan scan using mac airport command.
 	networkCmd := exec.Command("networksetup", "-setairportnetwork", netInterface, ssid, password)
-	networkCmdOutput, err := networkCmd.Output()
+	_, err := networkCmd.Output()
 	if err != nil {
 		return err
 	}
@@ -88,5 +88,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(accessPoint)
+	fmt.Println(accessPointList)
 }
