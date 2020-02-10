@@ -94,8 +94,8 @@ func main() {
 	}
 
 	for _, accessPoint := range accessPointList.Wlan {
-		if accessPoint.SSID == "WeWork" {
-			err = connect("en0", accessPoint.SSID, "P@ssw0rd")
+		if accessPoint.SSID == "sample" {
+			err = connect("en0", accessPoint.SSID, "sample")
 			if err != nil {
 				fmt.Println(fmt.Sprintf("failed connect to %s using connection interface %s, %v", accessPoint.SSID, "en0", err))
 				os.Exit(1)
